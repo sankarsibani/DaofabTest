@@ -35,7 +35,8 @@ public class DaofabController {
         List<Parent> result = daofabService.getParents(page, sortOrder);
         if (!result.isEmpty()) {
             log.info("getParents : Found data for request");
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            throw new RuntimeException();
+            //return new ResponseEntity<>(result, HttpStatus.OK);
         } else {
             log.info("getParents : No Records found for the request");
             Map<String, Object> msg = new HashMap<>();
@@ -58,7 +59,10 @@ public class DaofabController {
             return new ResponseEntity<>(result, HttpStatus.OK);
         } else {
             log.info("getChildren : No Records found for the request");
-            return new ResponseEntity(Collections.singletonMap("msg", "No Data found"), HttpStatus.OK);
+            Map<String, Object> msg = new HashMap<>();
+            msg.put("msg", "No data found");
+            msg.put("code", 2000);
+            return new ResponseEntity(msg, HttpStatus.OK);
         }
     }
 
