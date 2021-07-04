@@ -35,8 +35,7 @@ public class DaofabController {
         List<Parent> result = daofabService.getParents(page, sortOrder);
         if (!result.isEmpty()) {
             log.info("getParents : Found data for request");
-            throw new RuntimeException();
-            //return new ResponseEntity<>(result, HttpStatus.OK);
+            return new ResponseEntity<>(result, HttpStatus.OK);
         } else {
             log.info("getParents : No Records found for the request");
             Map<String, Object> msg = new HashMap<>();
